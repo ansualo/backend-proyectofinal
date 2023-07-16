@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
+
+
+Route::get('/profile', [UserController::class, 'profile'])->middleware('auth:sanctum');
+Route::post('/profile', [UserController::class, 'updateProfile'])->middleware('auth:sanctum');
 
 
