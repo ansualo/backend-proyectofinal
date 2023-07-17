@@ -11,7 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
-    public function profile (){
+    public function profile()
+    {
         try {
             
             $user = auth()->user();
@@ -30,7 +31,8 @@ class UserController extends Controller
         }
     }
 
-    public function updateProfile (Request $request){
+    public function updateProfile(Request $request)
+    {
         try {
             
             $user = auth()->user();
@@ -87,4 +89,43 @@ class UserController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function deleteProfile()
+    {
+        try {
+            $user = auth()->user();
+            User::destroy($user->id);
+
+            return response()->json([
+                'message'=> 'User deleted successfully',
+            ], Response::HTTP_OK);
+
+        } catch (\Throwable $th) {
+            Log::error('Error deleting user' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error deleting user'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function restoreProfile($id)
+    {
+        try {
+            User::withTrashed()->where('id', $id);
+
+            return response()->json([
+                'message' => 'User restored successfully',
+            ], Response::HTTP_OK);
+
+        } catch (\Throwable $th) {
+            Log::error('Error restoring user' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error restoring user'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
+

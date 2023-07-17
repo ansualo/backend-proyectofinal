@@ -23,6 +23,8 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 
 Route::get('/profile', [UserController::class, 'profile'])->middleware('auth:sanctum');
-Route::post('/profile', [UserController::class, 'updateProfile'])->middleware('auth:sanctum');
+Route::put('/profile', [UserController::class, 'updateProfile'])->middleware('auth:sanctum');
+Route::delete('/profile', [UserController::class, 'deleteProfile'])->middleware('auth:sanctum');
+Route::post('/profile/{id}', [UserController::class, 'restoreProfile']);
 
 
