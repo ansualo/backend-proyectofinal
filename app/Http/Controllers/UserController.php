@@ -112,7 +112,7 @@ class UserController extends Controller
     public function restoreProfile($id)
     {
         try {
-            User::withTrashed()->where('id', $id);
+            User::withTrashed()->where('id', $id)->restore();
 
             return response()->json([
                 'message' => 'User restored successfully',
