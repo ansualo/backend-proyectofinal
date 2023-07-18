@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PlantController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,6 @@ Route::delete('/profile', [UserController::class, 'deleteProfile'])->middleware(
 Route::post('/profile/{id}', [UserController::class, 'restoreProfile'])->middleware('auth:sanctum', 'isAdmin');
 
 
+Route::get('/plants', [PlantController::class, 'getAllPlants']);
+Route::get('/plants/{id}', [PlantController::class, 'getPlantById']);
+Route::post('/plants/name', [PlantController::class, 'getPlantByName']);
