@@ -32,3 +32,5 @@ Route::post('/profile/{id}', [UserController::class, 'restoreProfile'])->middlew
 Route::get('/plants', [PlantController::class, 'getAllPlants']);
 Route::get('/plants/{id}', [PlantController::class, 'getPlantById']);
 Route::post('/plants/name', [PlantController::class, 'getPlantByName']);
+Route::post('/plants/sunlight', [PlantController::class, 'getPlantBySunlight']);
+Route::post('/plants/watering', [PlantController::class, 'getPlantByWatering']);

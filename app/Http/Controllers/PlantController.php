@@ -58,7 +58,6 @@ class PlantController extends Controller
                            ->orWhere('scientific_name', 'like', '%' . $name . '%')
                            ->get();
 
-
             return response()->json([
                 'message'=> "Plant retrieved successfully",
                 'data'=> $plants
@@ -72,4 +71,49 @@ class PlantController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function getPlantBySunlight(Request $request)
+    {
+        try {
+
+            $sunlight = $request->input('sunlight');
+
+            $plants = Plant::where('sunlight', $sunlight)->get();
+
+            return response()->json([
+                'message'=> "Plant retrieved successfully",
+                'data'=> $plants
+            ], Response::HTTP_OK);
+
+        } catch (\Throwable $th) {
+            Log::error('Error retrieving plant by sunlight' . $th->getMessage());
+
+            return response()->json([
+                'message'=> 'Error retrieving plant by sunlight'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function getPlantByWatering(Request $request)
+    {
+        try {
+
+            $watering = $request->input('watering');
+
+            $plants = Plant::where('watering', $watering)->get();
+
+            return response()->json([
+                'message'=> "Plant retrieved successfully",
+                'data'=> $plants
+            ], Response::HTTP_OK);
+
+        } catch (\Throwable $th) {
+            Log::error('Error retrieving plant by watering' . $th->getMessage());
+
+            return response()->json([
+                'message'=> 'Error retrieving plant by watering'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }
+
