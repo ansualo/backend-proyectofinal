@@ -40,3 +40,6 @@ Route::post('/plants/watering', [PlantController::class, 'getPlantByWatering']);
 
 Route::get('/myplants', [MyPlantController::class, 'getMyPlantsByUser'])->middleware('auth:sanctum');
 Route::post('/myplants/{id}', [MyPlantController::class, 'createMyPlant'])->middleware('auth:sanctum');
+Route::put('/myplants/{id}', [MyPlantController::class, 'updateMyPlant'])->middleware('auth:sanctum');
+Route::delete('/myplants/{id}', [MyPlantController::class, 'deleteMyPlant'])->middleware('auth:sanctum');
+
