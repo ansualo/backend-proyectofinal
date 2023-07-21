@@ -52,7 +52,13 @@ class User extends Authenticatable
     ];
 
 
-    public function role() {
+    public function role()
+    {
         return $this->belongsTo(Role::class);
+    }
+
+    public function myPlants()
+    {
+        return $this->belongsToMany(MyPlant::class);
     }
 }

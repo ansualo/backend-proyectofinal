@@ -15,4 +15,9 @@ class Plant extends Model
         'sunlight',
         'watering',
     ];
+
+    public function myPlants()
+    {
+        return $this->hasMany(MyPlant::class);
+    }
 }
