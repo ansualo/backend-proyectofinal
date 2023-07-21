@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             PlantSeeder::class
         ]);
 
+        \App\Models\MyPlant::factory(20)->create();
+
 
     }
 }
