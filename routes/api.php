@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MyPlantController;
 use App\Http\Controllers\PlantController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
@@ -34,3 +35,8 @@ Route::get('/plants/{id}', [PlantController::class, 'getPlantById']);
 Route::post('/plants/name', [PlantController::class, 'getPlantByName']);
 Route::post('/plants/sunlight', [PlantController::class, 'getPlantBySunlight']);
 Route::post('/plants/watering', [PlantController::class, 'getPlantByWatering']);
+
+
+
+Route::get('/myplants', [MyPlantController::class, 'getMyPlantsByUser'])->middleware('auth:sanctum');
+Route::post('/myplants/{id}', [MyPlantController::class, 'createMyPlant'])->middleware('auth:sanctum');
