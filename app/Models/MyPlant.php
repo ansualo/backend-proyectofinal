@@ -30,4 +30,9 @@ class MyPlant extends Model
     {
         return $this->belongsTo(Plant::class);
     }
+
+    public function watering_date()
+    {
+        return $this->belongsTo(WateringDate::class);
+    }
 }
