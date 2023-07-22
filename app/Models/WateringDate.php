@@ -12,7 +12,8 @@ class WateringDate extends Model
     protected $fillable = [
         'my_plant_id',
         'watered_on',
-        'next_date_water'
+        'next_date_water',
+        'days_to_water'
     ];
 
     public function myPlants()

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('my_plant_id')->references('id')->on('my_plants');
             $table->date('watered_on');
             $table->date('next_date_water');
+            $table->integer('days_to_water');
             $table->timestamps();
         });
     }

@@ -46,14 +46,22 @@ class WateringDateController extends Controller
 
             $validData = $validator->validated();
 
+            //calculate next_date_water
             $my_plant = MyPlant::where('id', $validData['my_plant_id'])->first();
             $days_between_water = $my_plant->days_between_water;
             $carbonStartDate = Carbon::parse($validData['watered_on']);
-            
+            $next_date_water = $carbonStartDate->addDays($days_between_water);
+
+            // calculate days_to_water
+            $today = Carbon::now()->format('Y-m-d');
+            $today_parse = Carbon::parse($today);
+            $days_to_water = $today_parse->diffInDays($next_date_water);
+
             $watering_date = WateringDate::create([
                 'my_plant_id' => $validData['my_plant_id'],
                 'watered_on' => $validData['watered_on'],
-                'next_date_water' => $carbonStartDate->addDays($days_between_water)
+                'next_date_water' => $next_date_water,
+                'days_to_water' => $days_to_water
             ]);
 
             return response()->json([
@@ -96,10 +104,19 @@ class WateringDateController extends Controller
                 $watering_date->watered_on = $validData['watered_on'];
             }
 
+            //calculate next_date_water
             $my_plant_id = $watering_date->my_plant_id;
             $days_between_water = MyPlant::where('id', $my_plant_id)->first()->days_between_water;
             $carbonStartDate = Carbon::parse($validData['watered_on']);
-            $watering_date->next_date_water =$carbonStartDate->addDays($days_between_water);
+            $next_date_water = $carbonStartDate->addDays($days_between_water);
+
+            // calculate days_to_water
+            $today = Carbon::now()->format('Y-m-d');
+            $today_parse = Carbon::parse($today);
+            $days_to_water = $today_parse->diffInDays($next_date_water);
+            
+            $watering_date->next_date_water = $next_date_water;
+            $watering_date->days_to_water = $days_to_water;
 
             $watering_date->save();
 
@@ -115,4 +132,5 @@ class WateringDateController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
 }

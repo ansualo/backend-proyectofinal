@@ -20,7 +20,7 @@ class MyPlantController extends Controller
             $myplants = MyPlant::where('user_id', $user_id)
                 ->with([
                     'plant:id,common_name,scientific_name,sunlight,watering',
-                    'watering_date:id,my_plant_id,watered_on,next_date_water'
+                    'watering_date:id,my_plant_id,watered_on,next_date_water,days_to_water'
                 ])->get();
 
             if ($myplants->isEmpty()) {
@@ -49,7 +49,9 @@ class MyPlantController extends Controller
             $user_id = auth()->user()->id;
             $today = Carbon::now()->format('Y-m-d');
 
-            $myplants = MyPlant::where('user_id', $user_id)->get();
+            $myplants = MyPlant::where('user_id', $user_id)->with([
+                'plant:id,common_name,scientific_name,sunlight,watering'
+            ])->get();
 
             $plants_water_today = $myplants->filter(function ($myplant) use ($today) {
                     $next_date_water = $myplant->watering_date[0]['next_date_water'];
@@ -76,16 +78,18 @@ class MyPlantController extends Controller
             $user_id = auth()->user()->id;
             $today = Carbon::now()->format('Y-m-d');
 
-            $myplants = MyPlant::where('user_id', $user_id)->get();
+            $myplants = MyPlant::where('user_id', $user_id)->with([
+                'plant:id,common_name,scientific_name,sunlight,watering'
+            ])->get();
 
-            $plants_water_today = $myplants->filter(function ($myplant) use ($today) {
+            $plants_not_water_today = $myplants->filter(function ($myplant) use ($today) {
                     $next_date_water = $myplant->watering_date[0]['next_date_water'];
                     return $next_date_water !== $today;
             });
 
             return response()->json([
                 'message' => "MyPlants by user retrieved successfully",
-                'data' => $plants_water_today
+                'data' => $plants_not_water_today->values()
             ], Response::HTTP_OK);
         } catch (\Throwable $th) {
             Log::error('Error retrieving my plants by user' . $th->getMessage());
