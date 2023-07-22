@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MyPlantController;
 use App\Http\Controllers\PlantController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WateringDateController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -43,3 +44,7 @@ Route::post('/myplants/{id}', [MyPlantController::class, 'createMyPlant'])->midd
 Route::put('/myplants/{id}', [MyPlantController::class, 'updateMyPlant'])->middleware('auth:sanctum');
 Route::delete('/myplants/{id}', [MyPlantController::class, 'deleteMyPlant'])->middleware('auth:sanctum');
 
+
+Route::get('/water/{id}', [WateringDateController::class, 'getWateringDate'])->middleware('auth:sanctum');
+Route::post('/water', [WateringDateController::class, 'createWateringDate'])->middleware('auth:sanctum');
+Route::put('/water', [WateringDateController::class, 'updateWateringDate'])->middleware('auth:sanctum');

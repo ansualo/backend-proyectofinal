@@ -33,6 +33,6 @@ class MyPlant extends Model
 
     public function watering_date()
     {
-        return $this->belongsTo(WateringDate::class);
+        return $this->hasMany(WateringDate::class);
     }
 }

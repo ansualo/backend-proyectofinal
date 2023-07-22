@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('watering_dates', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('my_plant_id');
+            $table->unsignedBigInteger('my_plant_id')->unique();
             $table->foreign('my_plant_id')->references('id')->on('my_plants');
-            $table->date('next_watering_day');
             $table->date('watered_on');
+            $table->date('next_date_water');
+            $table->timestamps();
         });
     }
 
