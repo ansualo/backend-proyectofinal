@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
+use Carbon\Carbon;
 
 class MyPlantController extends Controller
 {
@@ -18,7 +19,8 @@ class MyPlantController extends Controller
 
             $myplants = MyPlant::where('user_id', $user_id)
                 ->with([
-                    'plant:id,common_name,scientific_name,sunlight,watering'
+                    'plant:id,common_name,scientific_name,sunlight,watering',
+                    'watering_date:id,my_plant_id,watered_on,next_date_water'
                 ])->get();
 
             if ($myplants->isEmpty()) {
@@ -30,6 +32,60 @@ class MyPlantController extends Controller
             return response()->json([
                 'message' => "MyPlants by user retrieved successfully",
                 'data' => $myplants
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error retrieving my plants by user' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error retrieving my plants by user'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function getPlantsWaterToday()
+    {
+        try {
+
+            $user_id = auth()->user()->id;
+            $today = Carbon::now()->format('Y-m-d');
+
+            $myplants = MyPlant::where('user_id', $user_id)->get();
+
+            $plants_water_today = $myplants->filter(function ($myplant) use ($today) {
+                    $next_date_water = $myplant->watering_date[0]['next_date_water'];
+                    return $next_date_water === $today;
+            });
+
+            return response()->json([
+                'message' => "MyPlants by user retrieved successfully",
+                'data' => $plants_water_today
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error retrieving my plants by user' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error retrieving my plants by user'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function getPlantsNotWaterToday()
+    {
+        try {
+
+            $user_id = auth()->user()->id;
+            $today = Carbon::now()->format('Y-m-d');
+
+            $myplants = MyPlant::where('user_id', $user_id)->get();
+
+            $plants_water_today = $myplants->filter(function ($myplant) use ($today) {
+                    $next_date_water = $myplant->watering_date[0]['next_date_water'];
+                    return $next_date_water !== $today;
+            });
+
+            return response()->json([
+                'message' => "MyPlants by user retrieved successfully",
+                'data' => $plants_water_today
             ], Response::HTTP_OK);
         } catch (\Throwable $th) {
             Log::error('Error retrieving my plants by user' . $th->getMessage());
@@ -156,4 +212,3 @@ class MyPlantController extends Controller
         }
     }
 }
-
