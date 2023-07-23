@@ -60,7 +60,7 @@ class MyPlantController extends Controller
 
             return response()->json([
                 'message' => "MyPlants by user retrieved successfully",
-                'data' => $plants_water_today
+                'data' => $plants_water_today->values()
             ], Response::HTTP_OK);
         } catch (\Throwable $th) {
             Log::error('Error retrieving my plants by user' . $th->getMessage());
