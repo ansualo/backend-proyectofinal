@@ -38,10 +38,11 @@ Route::post('/plants/sunlight', [PlantController::class, 'getPlantBySunlight']);
 Route::post('/plants/watering', [PlantController::class, 'getPlantByWatering']);
 
 
-
 Route::get('/myplants', [MyPlantController::class, 'getMyPlantsByUser'])->middleware('auth:sanctum');
 Route::get('/myplants/watertoday', [MyPlantController::class, 'getPlantsWaterToday'])->middleware('auth:sanctum');
 Route::get('/myplants/notwatertoday', [MyPlantController::class, 'getPlantsNotWaterToday'])->middleware('auth:sanctum');
+Route::get('/myplants/{id}', [MyPlantController::class, 'getMyPlantById'])->middleware('auth:sanctum');
+Route::get('/myplants/plant/{plant_id}', [MyPlantController::class, 'getMyPlantByPlantId'])->middleware('auth:sanctum');
 Route::post('/myplants/{id}', [MyPlantController::class, 'createMyPlant'])->middleware('auth:sanctum');
 Route::put('/myplants/{id}', [MyPlantController::class, 'updateMyPlant'])->middleware('auth:sanctum');
 Route::delete('/myplants/{id}', [MyPlantController::class, 'deleteMyPlant'])->middleware('auth:sanctum');

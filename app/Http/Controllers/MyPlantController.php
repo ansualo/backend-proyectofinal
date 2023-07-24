@@ -42,6 +42,71 @@ class MyPlantController extends Controller
         }
     }
 
+    public function getMyPlantById($id)
+    {
+        try {
+
+            //we check the plant belongs to the user
+            $user_id_token = auth()->user()->id;
+            $user_id = MyPlant::where('id', $id)->first(['user_id'])->user_id;
+
+            if ($user_id_token !== $user_id) {
+                return response()->json([
+                    'message' => 'Incorrect plant'
+                ], Response::HTTP_OK);
+            }
+
+            $myplant = MyPlant::where('id', $id)->with([
+                'plant:id,common_name,scientific_name,sunlight,watering',
+                'watering_date:id,my_plant_id,watered_on,next_date_water,days_to_water'
+            ])->first();
+            
+
+            return response()->json([
+                'message' => "My plant retrieved successfully",
+                'data' => $myplant
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error retrieving my plant by id' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error retrieving my plant by id'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function getMyPlantByPlantId($plant_id)
+    {
+        try {
+
+            $user_id = auth()->user()->id;
+
+            $myplant = MyPlant::where('user_id', $user_id)
+                  ->where('plant_id', $plant_id)
+                  ->with([
+                    'plant:id,common_name,scientific_name,sunlight,watering',
+                    'watering_date:id,my_plant_id,watered_on,next_date_water,days_to_water'
+                ])->first();
+
+            if(!$myplant){
+                return response()->json([
+                    'message' => "Incorrect plant",
+                ], Response::HTTP_OK);
+            }
+         
+            return response()->json([
+                'message' => "My plant retrieved successfully",
+                'data' => $myplant
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error retrieving my plant by plant_id' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error retrieving my plant by plant_id'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public function getPlantsWaterToday()
     {
         try {
@@ -54,19 +119,19 @@ class MyPlantController extends Controller
             ])->get();
 
             $plants_water_today = $myplants->filter(function ($myplant) use ($today) {
-                    $next_date_water = $myplant->watering_date[0]['next_date_water'];
-                    return $next_date_water === $today;
+                $next_date_water = $myplant->watering_date[0]['next_date_water'];
+                return $next_date_water === $today;
             });
 
             return response()->json([
-                'message' => "MyPlants by user retrieved successfully",
+                'message' => "Plants that need water today retrieved successfully",
                 'data' => $plants_water_today->values()
             ], Response::HTTP_OK);
         } catch (\Throwable $th) {
-            Log::error('Error retrieving my plants by user' . $th->getMessage());
+            Log::error('Error retrieving plants that need water today' . $th->getMessage());
 
             return response()->json([
-                'message' => 'Error retrieving my plants by user'
+                'message' => 'Error retrieving plants that need water today'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -83,19 +148,19 @@ class MyPlantController extends Controller
             ])->get();
 
             $plants_not_water_today = $myplants->filter(function ($myplant) use ($today) {
-                    $next_date_water = $myplant->watering_date[0]['next_date_water'];
-                    return $next_date_water !== $today;
+                $next_date_water = $myplant->watering_date[0]['next_date_water'];
+                return $next_date_water !== $today;
             });
 
             return response()->json([
-                'message' => "MyPlants by user retrieved successfully",
+                'message' => "Plants that do not need water today retrieved successfully",
                 'data' => $plants_not_water_today->values()
             ], Response::HTTP_OK);
         } catch (\Throwable $th) {
-            Log::error('Error retrieving my plants by user' . $th->getMessage());
+            Log::error('Error retrieving plants that do not need water today' . $th->getMessage());
 
             return response()->json([
-                'message' => 'Error retrieving my plants by user'
+                'message' => 'Error retrieving plants that do not need water today'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
