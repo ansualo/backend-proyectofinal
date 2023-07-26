@@ -14,6 +14,7 @@ class Plant extends Model
         'scientific_name',
         'sunlight',
         'watering',
+        'image'
     ];
 
     protected $hidden = [
