@@ -11,6 +11,46 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
+    public function getAllUsers()
+    {
+        try {
+
+            $users = User::get();
+
+            return response()->json([
+                'message' => 'Users retrieved',
+                'data' => $users
+            ], Response::HTTP_OK);
+            
+        } catch (\Throwable $th) {
+            Log::error('Error getting users' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error retrieving users',
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function getDeletedUsers()
+    {
+        try {
+
+            $users = User::onlyTrashed()->get();
+
+            return response()->json([
+                'message' => 'Deleted users retrieved',
+                'data' => $users
+            ], Response::HTTP_OK);
+            
+        } catch (\Throwable $th) {
+            Log::error('Error retrieving deleted users' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error retrieving deleted users',
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public function profile()
     {
         try {
@@ -109,9 +149,31 @@ class UserController extends Controller
         }
     }
 
-    public function restoreProfile($id)
+    public function deleteProfileAsAdmin($id)
     {
         try {
+
+            $user = User::find($id);
+            $user->delete();
+            // User::destroy($id);
+            
+            return response()->json([
+                'message'=> 'User deleted successfully'
+            ], Response::HTTP_OK);
+
+        } catch (\Throwable $th) {
+            Log::error('Error deleting user' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error deleting user'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function restoreProfile($id, Request $request)
+    {
+        try {
+            
             User::withTrashed()->where('id', $id)->restore();
 
             return response()->json([

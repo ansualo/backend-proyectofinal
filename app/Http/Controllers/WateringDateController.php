@@ -133,4 +133,22 @@ class WateringDateController extends Controller
         }
     }
 
+    public function deleteWateringDate($id)
+    {
+        try {
+
+            WateringDate::destroy($id);
+
+            return response()->json([
+                'message' => 'Watering date deleted succesfully',
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error deleting watering date' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error deleting watering date'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

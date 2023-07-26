@@ -264,7 +264,7 @@ class MyPlantController extends Controller
             if ($user_id_token !== $user_id) {
                 return response()->json([
                     'message' => 'Incorrect plant'
-                ], Response::HTTP_OK);
+                ], Response::HTTP_FORBIDDEN);
             }
 
             MyPlant::destroy($id);
@@ -280,4 +280,5 @@ class MyPlantController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+    
 }
