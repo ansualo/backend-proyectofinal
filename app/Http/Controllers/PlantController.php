@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plant;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,15 +16,14 @@ class PlantController extends Controller
             $plants = Plant::get();
 
             return response()->json([
-                'message'=> "All plants retrieved successfully",
-                'data'=> $plants
+                'message' => "All plants retrieved successfully",
+                'data' => $plants
             ], Response::HTTP_OK);
-
         } catch (\Throwable $th) {
             Log::error('Error retrieving all plants' . $th->getMessage());
 
             return response()->json([
-                'message'=> 'Error retrieving all plants'
+                'message' => 'Error retrieving all plants'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -35,15 +35,14 @@ class PlantController extends Controller
             $plant = Plant::where('id', $id)->get();
 
             return response()->json([
-                'message'=> "Plant retrieved successfully",
-                'data'=> $plant
+                'message' => "Plant retrieved successfully",
+                'data' => $plant
             ], Response::HTTP_OK);
-
         } catch (\Throwable $th) {
             Log::error('Error retrieving plant by id' . $th->getMessage());
 
             return response()->json([
-                'message'=> 'Error retrieving plant by id'
+                'message' => 'Error retrieving plant by id'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -55,19 +54,18 @@ class PlantController extends Controller
             $name = $request->input('name');
 
             $plants = Plant::where('common_name', 'like', '%' . $name . '%')
-                           ->orWhere('scientific_name', 'like', '%' . $name . '%')
-                           ->get();
+                ->orWhere('scientific_name', 'like', '%' . $name . '%')
+                ->get();
 
             return response()->json([
-                'message'=> "Plant retrieved successfully",
-                'data'=> $plants
+                'message' => "Plant retrieved successfully",
+                'data' => $plants
             ], Response::HTTP_OK);
-
         } catch (\Throwable $th) {
             Log::error('Error retrieving plant by name' . $th->getMessage());
 
             return response()->json([
-                'message'=> 'Error retrieving plant by name'
+                'message' => 'Error retrieving plant by name'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -81,15 +79,14 @@ class PlantController extends Controller
             $plants = Plant::where('sunlight', $sunlight)->get();
 
             return response()->json([
-                'message'=> "Plant retrieved successfully",
-                'data'=> $plants
+                'message' => "Plant retrieved successfully",
+                'data' => $plants
             ], Response::HTTP_OK);
-
         } catch (\Throwable $th) {
             Log::error('Error retrieving plant by sunlight' . $th->getMessage());
 
             return response()->json([
-                'message'=> 'Error retrieving plant by sunlight'
+                'message' => 'Error retrieving plant by sunlight'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -103,17 +100,52 @@ class PlantController extends Controller
             $plants = Plant::where('watering', $watering)->get();
 
             return response()->json([
-                'message'=> "Plant retrieved successfully",
-                'data'=> $plants
+                'message' => "Plant retrieved successfully",
+                'data' => $plants
             ], Response::HTTP_OK);
-
         } catch (\Throwable $th) {
             Log::error('Error retrieving plant by watering' . $th->getMessage());
 
             return response()->json([
-                'message'=> 'Error retrieving plant by watering'
+                'message' => 'Error retrieving plant by watering'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function createPlant(Request $request)
+    {
+        try {
+
+            $validator = Validator::make($request->all(), [
+                'common_name' => 'required|string',
+                'scientific_name' => 'required|string',
+                'sunlight' => 'required|string',
+                'watering' => 'required|string'
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            };
+
+            $validData = $validator->validated();
+
+            $plant = Plant::create([
+                'common_name' => $validData['common_name'],
+                'scientific_name' => $validData['scientific_name'],
+                'sunlight' => $validData['sunlight'],
+                'watering' => $validData['watering'],
+            ]);
+
+            return response()->json([
+                'message' => "Plant created successfully",
+                'data' => $plant
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error creating plant' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error creating plant'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }
-

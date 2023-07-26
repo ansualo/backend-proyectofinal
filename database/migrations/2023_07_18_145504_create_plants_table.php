@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("scientific_name")->unique();
             $table->string("sunlight");
             $table->string("watering");
+            $table->timestamps();
         });
     }
 

@@ -16,6 +16,11 @@ class Plant extends Model
         'watering',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function myPlants()
     {
         return $this->hasMany(MyPlant::class);
