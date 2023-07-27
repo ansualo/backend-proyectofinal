@@ -19,6 +19,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Aglaonema 'Silver Queen'",
                 "sunlight" => "Part Shade/Full Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_01_Chinese_Evergreen.jpg",
             ],
             [
@@ -26,20 +28,26 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Aloe Vera",
                 "sunlight" => "Full Sun",
                 "watering" => "Minimun",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_02_Aloe_Vera.jpg",
             ],
             [
                 "common_name" => "Elephant's ear",
                 "scientific_name" => "Colocasia esculenta",
-                "sunlight" => "Full sun/Part Shade",
-                "watering" => "Average",
+                "sunlight" => "Part sun/Part Shade",
+                "watering" => "Frequent",
+                "flowers" => true,
+                "poisonous_to_pets" => true,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_03_Elephant's_ear.jpg",
             ],
             [
-                "common_name" => "Anthurium",
+                "common_name" => "Flamingo Flower",
                 "scientific_name" => "Anthurium Andraeanum",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => true,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_04_Anthurium.jpg",
             ],
             [
@@ -47,6 +55,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Asparagus Setaceus",
                 "sunlight" => "Part Shade",
                 "watering" => "Frequent",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_05_Asparagus_Fern.png",
             ],
             [
@@ -54,6 +64,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Aspidistra Elatior",
                 "sunlight" => "Part Shade/Full Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_06_Cast_Iron_Plant.jpg",
             ],
             [
@@ -61,13 +73,17 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Asplenium Nidus 'Antiquum' ",
                 "sunlight" => "Full Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_07_Bird's_Nest_Fern.jpg",
             ],
             [
                 "common_name" => "Rex Begonia",
                 "scientific_name" => "Begonia Rex-Cultorum",
-                "sunlight" => "Part Sun/Part Shade",
+                "sunlight" => "Part Shade/Full Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_08_Rex_Begonia.jpg",
             ],
             [
@@ -75,6 +91,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Nephrolepis Exaltata",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => false,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_09_Boston_Fern.jpg",
             ],
             [
@@ -82,6 +100,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Strelitzia Reginae",
                 "sunlight" => "Full sun",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => true,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_10_Bird_of_paradise.jpg",
             ],
             [
@@ -90,6 +110,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Caladium Bicolor",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => true,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_11_Angel_Wings.jpg",
             ],
             [
@@ -97,6 +119,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Calathea makoyana",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_12_Peacock_Plant.jpg",
             ],
             [
@@ -104,6 +128,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Calathea zebrina",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_13_Zebra_Plant.jpg",
             ],
             [
@@ -111,6 +137,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Pilea peperomioides",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Low",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_14_Chinese_Money_Plant.jpg",
             ],
             [
@@ -118,6 +146,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Codiaeum Variegatum",
                 "sunlight" => "Full Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_15_Croton.jpg",
             ],
             [
@@ -125,6 +155,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Chlorophytum",
                 "sunlight" => "Part Shade/Full Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_16_Spider_Plant.jpg",
             ],
             [
@@ -132,6 +164,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Dracaena Fragans",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_17_Dracaena.jpg",
             ],
             [
@@ -139,6 +173,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Hedera Helix",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Frequent",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_18_English_Ivy.jpg",
             ],
             [
@@ -146,6 +182,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Epipremnum Aureum 'Neon'",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => false,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_19_Pothos.jpg",
             ],
             [
@@ -153,6 +191,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Epiphyllum Anguliger",
                 "sunlight" => "Indirect Sun",
                 "watering" => "Low",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_20_Fishbone_Cactus.png",
             ],
 
@@ -161,6 +201,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Ficus Benjamina",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_21_Weeping_Fig.jpg",
             ],
             [
@@ -168,6 +210,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Ficus Lyrata",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_22_Fiddle_Leaf_Fig.jpg",
             ],
             [
@@ -175,6 +219,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Vriesea splendens",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_23_Flaming_Sword.jpg",
             ],
             [
@@ -182,6 +228,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Hoya carnosa",
                 "sunlight" => "Full Sun/Part Sun",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_24_Wax_Plant.jpg",
             ],
             [
@@ -189,6 +237,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Howea forsteriana",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_25_Kentia_Palm+.jpg",
             ],
             [
@@ -196,6 +246,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Adiantum Capillus-Veneris",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => false,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_26_Maidenh_Fern.png",
             ],
             [
@@ -203,6 +255,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Maranta Leuconeura",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_27_Prayer_Plant.jpg",
             ],
 
@@ -211,6 +265,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Monstera Deliciosa",
                 "sunlight" => "Full Sun/Part Sun",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => true,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_28_Swiss_Cheese_Plant.jpg",
             ],
             [
@@ -218,6 +274,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Phalaenopsis",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_29_Orchid.jpg",
             ],
             [
@@ -225,6 +283,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Pachira aquatica",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_30_Guiana_Chestnut.jpg",
             ],
             [
@@ -232,6 +292,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Peperomia Argyreia",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_31_Watermelon_Peperomia.jpg",
             ],
             [
@@ -239,6 +301,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Philodendron 'Pink Princess'",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => true,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_32_Philodendron_Pink+_Princess.jpg",
             ],
             [
@@ -246,6 +310,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Pteris Cretica",
                 "sunlight" => "Full Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => false,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_33_Cretan_Brake.jpg",
             ],
             [
@@ -253,6 +319,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Ficus elastica",
                 "sunlight" => "Full Sun/Part Sun",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_34_Rubber_Plant.jpg",
             ],
             [
@@ -260,6 +328,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Dionaea Muscipula",
                 "sunlight" => "Full Sun/Part Sun",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_35_Venus_Fly_Trap.jpg",
             ],
             [
@@ -267,6 +337,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Sansevieria",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Minimum",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_36_Snake_Plant.jpg",
             ],
             [
@@ -274,6 +346,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Tradescantia Zebrina",
                 "sunlight" => "Full Sun/Part Sun",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_37_Inchplant.jpg",
             ],
             [
@@ -281,6 +355,8 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Spathiphyllum",
                 "sunlight" => "Full Sun/Part Shade",
                 "watering" => "Minimum",
+                "flowers" => true,
+                "poisonous_to_pets" => false,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_38_Peace_Lily.jpg",
             ],
             [
@@ -288,13 +364,17 @@ class PlantSeeder extends Seeder
                 "scientific_name" => "Zamioculcas zamiifolia",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => true,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_39_ZZ_Plant.jpg",
             ],
             [
-                "common_name" => "Alocasia zebrina",
+                "common_name" => "Alocasia",
                 "scientific_name" => "Alocasia zebrina",
                 "sunlight" => "Part Sun/Part Shade",
                 "watering" => "Average",
+                "flowers" => true,
+                "poisonous_to_pets" => true,
                 "image" => "https://plantas.s3.eu-west-2.amazonaws.com/plantas+db/plant_40_Alocasia_Zebrina.jpg",
             ],
         ]);

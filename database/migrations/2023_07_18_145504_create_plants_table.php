@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string("scientific_name")->unique();
             $table->string("sunlight");
             $table->string("watering");
+            $table->boolean("flowers");
+            $table->boolean("poisonous_to_pets");
             $table->string('image');
             $table->timestamps();
         });

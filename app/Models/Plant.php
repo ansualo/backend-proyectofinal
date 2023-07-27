@@ -14,6 +14,8 @@ class Plant extends Model
         'scientific_name',
         'sunlight',
         'watering',
+        'flowers',
+        'poisonous_to_pets',
         'image'
     ];
 
