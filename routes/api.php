@@ -39,6 +39,8 @@ Route::get('/plants/{id}', [PlantController::class, 'getPlantById']);
 Route::post('/plants/name', [PlantController::class, 'getPlantByName']);
 Route::post('/plants/sunlight', [PlantController::class, 'getPlantBySunlight']);
 Route::post('/plants/watering', [PlantController::class, 'getPlantByWatering']);
+Route::post('/plants/flowers', [PlantController::class, 'getPlantByFlowers']);
+Route::post('/plants/poisonous', [PlantController::class, 'getPlantByPoisonous']);
 Route::post('/plants', [PlantController::class, 'createPlant'])->middleware('auth:sanctum', 'isAdmin');
 
 // MYPLANTS

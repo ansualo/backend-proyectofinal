@@ -112,6 +112,48 @@ class PlantController extends Controller
         }
     }
 
+    public function getPlantByFlowers(Request $request)
+    {
+        try {
+
+            $flowers = $request->input('flowers');
+
+            $plants = Plant::where('flowers', $flowers)->get();
+
+            return response()->json([
+                'message' => "Plants retrieved successfully",
+                'data' => $plants
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error retrieving plant if flowers' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error retrieving plant if flowers'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function getPlantByPoisonous(Request $request)
+    {
+        try {
+
+            $poisonous = $request->input('poisonous');
+
+            $plants = Plant::where('poisonous_to_pets', $poisonous)->get();
+
+            return response()->json([
+                'message' => "Plants retrieved successfully",
+                'data' => $plants
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error retrieving plant if poisonous' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error retrieving plant if poisonous'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public function createPlant(Request $request)
     {
         try {
