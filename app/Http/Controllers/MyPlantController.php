@@ -18,10 +18,7 @@ class MyPlantController extends Controller
             $user_id = auth()->user()->id;
 
             $myplants = MyPlant::where('user_id', $user_id)
-                ->with([
-                    'plant:id,common_name,scientific_name,sunlight,watering',
-                    'watering_date:id,my_plant_id,watered_on,next_date_water,days_to_water'
-                ])->get();
+                ->with(['plant', 'watering_date'])->get();
 
             if ($myplants->isEmpty()) {
                 return response()->json([
@@ -57,11 +54,8 @@ class MyPlantController extends Controller
             }
 
             $myplant = MyPlant::where('id', $id)->with([
-                'plant:id,common_name,scientific_name,sunlight,watering',
-                'watering_date:id,my_plant_id,watered_on,next_date_water,days_to_water'
-            ])->first();
+                'plant', 'watering_date'])->first();
             
-
             return response()->json([
                 'message' => "My plant retrieved successfully",
                 'data' => $myplant
@@ -83,10 +77,7 @@ class MyPlantController extends Controller
 
             $myplant = MyPlant::where('user_id', $user_id)
                   ->where('plant_id', $plant_id)
-                  ->with([
-                    'plant:id,common_name,scientific_name,sunlight,watering',
-                    'watering_date:id,my_plant_id,watered_on,next_date_water,days_to_water'
-                ])->first();
+                  ->with(['plant', 'watering_date'])->first();
 
             if(!$myplant){
                 return response()->json([
@@ -114,9 +105,7 @@ class MyPlantController extends Controller
             $user_id = auth()->user()->id;
             $today = Carbon::now()->format('Y-m-d');
 
-            $myplants = MyPlant::where('user_id', $user_id)->with([
-                'plant:id,common_name,scientific_name,sunlight,watering'
-            ])->get();
+            $myplants = MyPlant::where('user_id', $user_id)->with(['plant'])->get();
 
             $plants_water_today = $myplants->filter(function ($myplant) use ($today) {
                 $next_date_water = $myplant->watering_date[0]['next_date_water'];
@@ -143,9 +132,7 @@ class MyPlantController extends Controller
             $user_id = auth()->user()->id;
             $today = Carbon::now()->format('Y-m-d');
 
-            $myplants = MyPlant::where('user_id', $user_id)->with([
-                'plant:id,common_name,scientific_name,sunlight,watering'
-            ])->get();
+            $myplants = MyPlant::where('user_id', $user_id)->with(['plant'])->get();
 
             $plants_not_water_today = $myplants->filter(function ($myplant) use ($today) {
                 $next_date_water = $myplant->watering_date[0]['next_date_water'];

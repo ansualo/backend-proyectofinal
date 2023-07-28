@@ -162,7 +162,9 @@ class PlantController extends Controller
                 'common_name' => 'required|string',
                 'scientific_name' => 'required|string',
                 'sunlight' => 'required|string',
-                'watering' => 'required|string'
+                'watering' => 'required|string',
+                'flowers' => 'required|string',
+                'poisonous_to_pets' => 'required|string'
             ]);
 
             if ($validator->fails()) {
@@ -171,11 +173,26 @@ class PlantController extends Controller
 
             $validData = $validator->validated();
 
+            if($validData['flowers'] === "Yes"){
+                $flowers = true;
+            } else {
+                $flowers = false;
+            }
+
+            if($validData['poisonous_to_pets'] === "Yes"){
+                $poisonous = true;
+            } else {
+                $poisonous = false;
+            }
+
             $plant = Plant::create([
                 'common_name' => $validData['common_name'],
                 'scientific_name' => $validData['scientific_name'],
                 'sunlight' => $validData['sunlight'],
                 'watering' => $validData['watering'],
+                'flowers' => $flowers,
+                'poisonous_to_pets' => $poisonous,
+                'image'=> 'Not available'
             ]);
 
             return response()->json([

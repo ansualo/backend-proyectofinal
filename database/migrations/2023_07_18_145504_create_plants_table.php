@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("watering");
             $table->boolean("flowers");
             $table->boolean("poisonous_to_pets");
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
