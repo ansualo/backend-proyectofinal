@@ -17,7 +17,7 @@ class MyPlantFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => fake()->numberBetween(1, 10),
+            'user_id' => 2,
             'plant_id' => fake()->numberBetween(1, 40),
             'name' => fake()->word(),
             'days_between_water' => fake()->numberBetween(3, 15) 

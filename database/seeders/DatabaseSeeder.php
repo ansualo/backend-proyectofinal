@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,6 +17,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class
         ]);
+
+        $this->call([
+            UserSeeder::class
+        ]);
         
         \App\Models\User::factory(10)->create();
 
@@ -23,7 +28,9 @@ class DatabaseSeeder extends Seeder
             PlantSeeder::class
         ]);
 
-        \App\Models\MyPlant::factory(20)->create();
+        \App\Models\MyPlant::factory(5)->create();
+
+        \App\Models\WateringDate::factory(5)->create();
 
 
     }

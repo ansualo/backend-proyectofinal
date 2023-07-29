@@ -23,12 +23,15 @@ class AuthController extends Controller
                 'password' => ['required', Password::min(8)->mixedCase()->numbers()],
                 'city' => 'required|string',
                 'country' => 'required|string',
+                'role_id' => 'integer'
             ]);
 
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
             $validData = $validator->validated();
+
+            $roleId = isset($validData['role_id']) ? $validData['role_id'] : 2;
 
             $user = User::create([
                 'name' => $validData['name'],
@@ -37,7 +40,7 @@ class AuthController extends Controller
                 'password' => bcrypt($validData['password']),
                 'city' => $validData['city'],
                 'country' => $validData['country'],
-                'role_id' => 2
+                'role_id' => $roleId
             ]);
 
             $token = $user->createToken('apiToken')->plainTextToken;
