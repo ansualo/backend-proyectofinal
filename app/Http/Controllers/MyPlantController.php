@@ -109,7 +109,7 @@ class MyPlantController extends Controller
 
             $plants_water_today = $myplants->filter(function ($myplant) use ($today) {
                 $next_date_water = $myplant->watering_date[0]['next_date_water'];
-                return $next_date_water === $today;
+                return $next_date_water <= $today;
             });
 
             return response()->json([

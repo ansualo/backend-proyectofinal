@@ -308,6 +308,8 @@ Tecnologías utilizadas:
 ## Licencia
 Este proyecto se encuentra bajo licencia MIT.
 
+La información de la tabla de plantas se ha obtenido de perenual.com/docs/api
+
 
 ## Contacto
 <a href = "mailto:andrea.sualo@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
@@ -623,6 +625,7 @@ Technologies used:
 ## License
 This project is under MIT licence.
 
+The information in the table plants has been obtained from perenual.com/docs/api
 
 ## Contact
 <a href = "mailto:andrea.sualo@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
